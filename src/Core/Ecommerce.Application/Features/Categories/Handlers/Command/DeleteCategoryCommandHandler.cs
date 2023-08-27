@@ -14,15 +14,14 @@ namespace Ecommerce.Application.Features.Categories.Handlers.Command
             _repository = repository;
             _mapper = mapper;
         }
-        public async Task<Unit> Handle(DeleteCategoryCommand request, CancellationToken cancellationToken)
+
+        public async Task Handle(DeleteCategoryCommand request, CancellationToken cancellationToken)
         {
             // get category by id
             var oldCategory = await _repository.GetAsync(request.Id);
 
             // remove
             await _repository.DeleteAsync(oldCategory.Id);
-
-            return Unit.Value;
 
         }
     }
