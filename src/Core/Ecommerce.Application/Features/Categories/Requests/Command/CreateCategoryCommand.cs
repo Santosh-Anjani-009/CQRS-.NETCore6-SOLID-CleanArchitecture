@@ -1,4 +1,6 @@
-﻿using MediatR;
+﻿using Ecommerce.Application.DTOs.EntitiesDto.Category;
+using Ecommerce.Application.Responses;
+using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Ecommerce.Application.Features.Categories.Requests.Command
 {
-    public class CreateCategoryCommand: IRequest<Unit>
+    public class CreateCategoryCommand: IRequest<BaseCommandResponse>
     {
         public CategoryDto categoryDto { get; set; }
     }

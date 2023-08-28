@@ -1,4 +1,6 @@
-﻿using Ecommerce.Application.Features.Categories.Requests.Command;
+﻿using Ecommerce.Application.DTOs.EntitiesDto.Category.Validators;
+using Ecommerce.Application.Exceptions;
+using Ecommerce.Application.Features.Categories.Requests.Command;
 using Ecommerce.Application.Persistance.Contracts;
 using MediatR;
 using System;
@@ -21,6 +23,15 @@ namespace Ecommerce.Application.Features.Categories.Handlers.Command
         }
         public async Task<Unit> Handle(UpdateCategoryCommand request, CancellationToken cancellationToken)
         {
+            // check validator
+            var validator = new CategoryValidator();
+            var validatorResult = await validator.ValidateAsync(request.categoryDto);
+            if (!validatorResult.IsValid)
+            {
+                throw new ValidationException(validatorResult);
+            }
+
+
             var oldCategory = await _repository.GetAsync(request.categoryDto.Id);
             var response = _mapper.Map(request.categoryDto, oldCategory);
 

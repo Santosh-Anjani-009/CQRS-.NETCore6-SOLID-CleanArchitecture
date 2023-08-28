@@ -1,4 +1,5 @@
-﻿using Ecommerce.Application.Features.Categories.Requests.Query;
+﻿using Ecommerce.Application.DTOs.EntitiesDto.Category;
+using Ecommerce.Application.Features.Categories.Requests.Query;
 using Ecommerce.Application.Persistance.Contracts;
 using MediatR;
 using System;
@@ -21,8 +22,8 @@ namespace Ecommerce.Application.Features.Categories.Handlers.Query
         }
         public async Task<List<CategoryDto>> Handle(GetAllCategoriesRequest request, CancellationToken cancellationToken)
         {
-            var category = await _repository.GetAllAsync();
-            var response = _mapper.Map<List<CategoryDto>>(category);
+            var categories = await _repository.GetAllAsync();
+            var response = _mapper.Map<List<CategoryDto>>(categories);
 
             return response;
         }

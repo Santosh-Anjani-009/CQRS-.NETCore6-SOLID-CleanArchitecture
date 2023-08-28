@@ -1,4 +1,5 @@
-﻿using Ecommerce.Application.Features.Categories.Requests.Query;
+﻿using Ecommerce.Application.DTOs.EntitiesDto.Category;
+using Ecommerce.Application.Features.Categories.Requests.Query;
 using Ecommerce.Application.Persistance.Contracts;
 using MediatR;
 using System;
